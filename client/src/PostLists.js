@@ -1,5 +1,5 @@
 import { Card, Grid } from "@mui/material";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import tinycolor from "tinycolor2";
 
@@ -31,14 +31,10 @@ const PostLists = ({ postsData, count }) => {
 
   useEffect(() => {
     fetchPosts();
-  }, [count]);
+  }, [count, commentCount]);
 
   const onCommentCreated = () => {
     setCommentCount(commentCount + 1);
-  };
-
-  const updateCommentCount = (value) => {
-    setCommentCount(value);
   };
 
   return (
@@ -75,8 +71,7 @@ const PostLists = ({ postsData, count }) => {
                 <CommentLists
                   comments={post.comments}
                   color={post.backgroundColor}
-                  commentCount={commentCount}
-                  updateCommentCount={updateCommentCount}
+                  commentCount={post.comments.length}
                 />
                 <CommentCreate
                   postId={post.id}
