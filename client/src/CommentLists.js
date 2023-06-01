@@ -31,11 +31,12 @@ const CommentLists = ({ postId, color, commentCount, updateCommentCount }) => {
         return (
           <motion.div
             key={comment.id}
-            animate={{ scale: [0, 1] }}
+            // animate={{ scale: [0, 1] }}
+            animate={{ y: [40, 1] }}
             transition={{
               ease: "linear",
-              duration: 0.5,
-              x: { duration: 0.5 },
+              duration: 0.3,
+              x: { duration: 0.3 },
             }}
           >
             <div
