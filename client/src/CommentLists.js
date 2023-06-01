@@ -5,29 +5,34 @@ import tinycolor from "tinycolor2";
 
 import { motion } from "framer-motion";
 
-const CommentLists = ({ postId, color, commentCount, updateCommentCount }) => {
-  const [comments, setComments] = useState({});
+const CommentLists = ({
+  comments,
+  color,
+  commentCount,
+  updateCommentCount,
+}) => {
+  // const [comments, setComments] = useState({});
 
   const isColorSuitableForWhiteText = (color) => {
     const contrast = tinycolor.readability(color, "#ffffff");
     return contrast >= 4.5;
   };
 
-  const fetchComments = async () => {
-    const res = await axios.get(
-      `http://localhost:4001/posts/${postId}/comments`
-    );
-    setComments(res.data);
-    updateCommentCount(Object.keys(comments).length);
-  };
+  // const fetchComments = async () => {
+  //   const res = await axios.get(
+  //     `http://localhost:4001/posts/${postId}/comments`
+  //   );
+  //   setComments(res.data);
+  //   updateCommentCount(Object.keys(comments).length);
+  // };
 
   useEffect(() => {
-    fetchComments();
+    // fetchComments();
   }, [commentCount]);
 
   return (
     <div>
-      {Object.values(comments).map((comment) => {
+      {comments.map((comment) => {
         return (
           <motion.div
             key={comment.id}

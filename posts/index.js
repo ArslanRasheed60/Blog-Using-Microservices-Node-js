@@ -30,6 +30,7 @@ app.post("/posts", async (req, res) => {
     data: {
       id,
       title,
+      backgroundColor,
     },
   });
 

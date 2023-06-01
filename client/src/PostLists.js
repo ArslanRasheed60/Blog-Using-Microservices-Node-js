@@ -1,5 +1,5 @@
 import { Card, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import tinycolor from "tinycolor2";
 
@@ -19,7 +19,7 @@ const PostLists = ({ postsData, count }) => {
   };
 
   const fetchPosts = async () => {
-    const res = await axios.get("http://localhost:4000/posts");
+    const res = await axios.get("http://localhost:4002/posts");
     setPosts(res.data);
   };
 
@@ -69,11 +69,11 @@ const PostLists = ({ postsData, count }) => {
               >
                 <h2>{post.title}</h2>
                 <div style={{ fontStyle: "bold" }}>
-                  Comments: {commentCount}
+                  Comments: {post.comments.length}
                 </div>
                 <br />
                 <CommentLists
-                  postId={post.id}
+                  comments={post.comments}
                   color={post.backgroundColor}
                   commentCount={commentCount}
                   updateCommentCount={updateCommentCount}
